@@ -266,6 +266,7 @@ func (bsp *batchSpanProcessor) exportSpans(ctx context.Context) error {
 
 	if l := len(bsp.batch); l > 0 {
 		global.Debug("exporting spans", "count", len(bsp.batch))
+
 		dropped := atomic.LoadUint32(&bsp.dropped)
 		if dropped > 0 {
 			global.Warn("dropped spans", "total_dropped", dropped)
